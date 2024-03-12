@@ -1,8 +1,8 @@
-# React + Vite
+# Simple OAuth Using Keycloak JS + React
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Create a realm and a client with OpenID Connect
+- Configured the values for `initOptions` in `src/main.jsx`
+- Install the dependencies
+  `npm install`
+- Run the app
+  `npm run dev`
