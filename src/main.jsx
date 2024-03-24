@@ -6,12 +6,13 @@ var initOptions = {
   url: 'http://0.0.0.0:8080', 
   realm: 'simple', 
   clientId: 'react-frontend', 
-  onLoad: 'login-required'
+  onLoad: 'login-required',
+  scope: 'offline_access'
 }
 
 const keycloak = new Keycloak(initOptions);
 
-keycloak.init({ onLoad: initOptions.onLoad }).then((auth) => {
+keycloak.init({ onLoad: initOptions.onLoad, scope: initOptions.scope }).then((auth) => {
 
   if (!auth) {
     window.location.reload();
@@ -19,7 +20,22 @@ keycloak.init({ onLoad: initOptions.onLoad }).then((auth) => {
 
 
   ReactDOM.createRoot(document.getElementById('root')).render(
-    <h1>Authenticated!</h1>,
+    <div>
+      <div>
+        <p>Refresh Token</p>
+        <pre>{JSON.stringify(keycloak.refreshTokenParsed, null, 2)} </pre>
+        <p>RAW refresh token</p>
+        <div>{keycloak.refreshToken} </div>
+      </div>
+      <div>
+        <p>ID Token</p>
+        <pre>{JSON.stringify(keycloak.idTokenParsed, null, 2)} </pre>
+      </div>
+      <div>
+        <p>Access Token</p>
+        <pre>{JSON.stringify(keycloak.tokenParsed, null, 2)} </pre>
+      </div>
+    </div>
   )
 
 localStorage.setItem("react-token", keycloak.token);
